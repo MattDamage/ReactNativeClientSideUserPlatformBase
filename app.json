@@ -26,7 +26,18 @@
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "config": {
+        "firebase":{
+          "apiKey": "AIzaSyDC9TWbEI3B7IzhzLiKnbNN7J25E2rQaeY",
+          "authDomain": "reactnativeproject-f3c13.firebaseapp.com",
+          "projectId": "reactnativeproject-f3c13",
+          "messagingSenderId": "107648671727",
+          "appId": "1:1076468671727:ios:d341bcbda32d245b41e71a"
+        } 
+    }
+        
     }
   }
 }
+
