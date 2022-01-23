@@ -54,28 +54,14 @@ export const getCurrentUserData = () => {
 //,fname,lname, This is where data is written to the firebase database
 export const writeUserData = (email) => {
     console.log('write user data called: ' + email)
-    /*
-    firebase.database().ref('Users/').set({
-        email
-    }).then((data)=>{
-        //success callback
-        console.log('data ' , data)
-       // resolve()
-    }).catch((error)=>{
-        //error callback
-        console.log('error ' , error)
-       // reject()
-    })
-    */
+
     UserID = firebase.auth().currentUser.uid
     firebase.database().ref('UsersList/' + UserID ).set({
     //firebase.database().ref('Test/test').set({   
         email
     }).then((data)=>{
-        //success callback
-        console.log('data ' , data)
+        console.log('data was written ' , data)
     }).catch((error)=>{
-        //error callback
         console.log('error ' , error)
     })   
 }
@@ -98,7 +84,6 @@ export const register = (email,password) => dispatch => new Promise((resolve,rej
         reject()
     })
 })
-
 export const logout = () => 
 {
     firebase.auth().signOut()
@@ -109,4 +94,41 @@ export const logout = () =>
     .catch((error) => {
         console.log("There was an error during the sign-out process")
     });
+}
+export const updateEmail = (email,currentPassword,newEmail) => 
+{
+    firebase.auth()
+    .signInWithEmailAndPassword(email, currentPassword)
+    .then(function(userCredential) {
+        userCredential.user.updateEmail(newEmail)
+    })
+    .catch((error) => {
+        console.log("There was an error updating the users email")
+    });
+
+}
+export const updatePassword = (email,currentPassword,newPassword) => 
+{
+    firebase.auth()
+    .signInWithEmailAndPassword(email, currentPassword)
+    .then(function(userCredential) {
+        userCredential.user.updateEmail(newPassword)
+    })
+    .catch((error) => {
+        console.log("There was an error updating the users password")
+    });
+
+}
+export const updateUserData = (email) => {
+    console.log('write user data called: ' + email)
+
+    UserID = firebase.auth().currentUser.uid
+    firebase.database().ref('UsersList/' + UserID ).set({
+    //firebase.database().ref('Test/test').set({   
+        email
+    }).then((data)=>{
+        console.log('data was written ' , data)
+    }).catch((error)=>{
+        console.log('error ' , error)
+    })   
 }

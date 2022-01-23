@@ -26,6 +26,14 @@ const styles = StyleSheet.create({
     },
     settingsButton:
     {
+        marginTop: 20,
+        backgroundColor: 'ghostwhite',
+        padding: 10,
+        alignItems:'center',
+        borderStyle: "solid",
+        borderWidth: 1,
+        borderColor: 'lightgrey'
+        /*
         backgroundColor: 'darkgrey',
         marginHorizontal: 2,
         marginTop:1,
@@ -34,22 +42,22 @@ const styles = StyleSheet.create({
         borderWidth:0.25,
         borderColor: 'grey',
         alignItems:'center',
+        */
     },
     settingsButtonText:
     {
         fontSize: 20,
-        color: 'white'
+        color: 'black'
     },
     logoutButton:
     {
+        marginTop: 20,
         backgroundColor: 'red',
-        marginHorizontal: 2,
-        marginTop:1,
-        paddingTop: 2, 
-        paddingBottom: 2, 
-        borderWidth:0.25,
-        borderColor: 'darkred',
+        padding: 10,
         alignItems:'center',
+        borderStyle: "solid",
+        borderWidth: 1,
+        borderColor: 'lightgrey'
     },
     logoutButtonText:
     {
