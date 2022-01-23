@@ -24,7 +24,14 @@ const styles = StyleSheet.create({
     {
         backgroundColor: 'pink',
         marginHorizontal: 20,
+    },
+    logoutButton:
+    {
+        backgroundColor: 'pink',
+        marginHorizontal: 20,
+
     }
+    
     
 });
 export default styles;

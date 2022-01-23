@@ -9,8 +9,8 @@ export default function AuthDetails({authPage ,setDetailsPage}) {
     const [password, setPassword] = useState('')
 
     const isLogedIn = false;
-
     const dispatch = useDispatch()
+
     const handleLogin =() =>
     {
        dispatch(login(email,password)).then(()=>{
@@ -18,12 +18,10 @@ export default function AuthDetails({authPage ,setDetailsPage}) {
        })
        .catch(() =>{
             console.log('login unsuccessful')
-       })
+       })     
     }
     const handlewriteUserData =() => {
-        console.log("I got called!")
-        writeUserData(email)
-        
+        writeUserData(email)  
     }
     const handleRegister =() =>
     {
@@ -35,10 +33,8 @@ export default function AuthDetails({authPage ,setDetailsPage}) {
        })
        .catch(() =>{
             console.log('register unsuccessful')
-       })
-       
+       })   
     } 
-
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={() => setDetailsPage(false)}>
@@ -60,8 +56,7 @@ export default function AuthDetails({authPage ,setDetailsPage}) {
             style={styles.button}
             onPress={() => authPage == 0 ? handleLogin(): handleRegister()}>
                 <Text style={styles.buttonText}>{authPage == 0 ? 'Sign in' : 'Sign up'} </Text>
-            </TouchableOpacity>
-           
+            </TouchableOpacity>  
         </View>
     )
 }

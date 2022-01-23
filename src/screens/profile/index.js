@@ -1,6 +1,13 @@
 import React from 'react'
-import {Text, SafeAreaView, ScrollView, StatusBar }from 'react-native'
+import {Text, SafeAreaView, ScrollView, TouchableOpacity }from 'react-native'
 import styles from './styles'
+import {logout} from '../../redux/actions'
+import SettingsScreen from '../../screens/settings'
+
+const handleLogout =() => {
+    logout()  
+}
+
 
 export default function ProfileScreen() {
     return (
@@ -16,7 +23,10 @@ export default function ProfileScreen() {
                 pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
                 culpa qui officia deserunt mollit anim id est laborum.
             </Text>
-          
+            <TouchableOpacity  style={styles.logoutButton} onPress={() =>  handleLogout()}>
+                    <Text>Logout</Text>
+                    
+                </TouchableOpacity>
         </ScrollView>
       </SafeAreaView>
     );

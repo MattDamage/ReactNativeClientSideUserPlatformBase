@@ -10,29 +10,48 @@ export const userAuthStateListener = () => dispatch =>
 {
     firebase.auth().onAuthStateChanged((user) => {
         if(user) {
-            //dispatch(getCurrentUserData())
+            console.log("UserAuthState user ")
+           //dispatch(getCurrentUserData())
+           dispatch({type: USER_STATE_CHANGE,currentUser: null,loaded: true})
         } else {
-            dispatch({type: USER_STATE_CHANGE,currentUser: null,loaded: true})
+            console.log("UserAuthState else ")
+            dispatch({type: USER_STATE_CHANGE,currentUser: null,loaded: false}) // set to true if is breaks?
         }
     })  
 }
-
-//add 'dispatch' => if it breaks 
+//This is where we should load the userObject
 export const getCurrentUserData = () => {
+     /*
+    UserID = firebase.auth().currentUser.uid
+   /// console.log("getCurrentUserData was called with UID: " + UserID)
+    Console
+    
+    firebase.database()
+        .ref('UsersList/' + UserID)
+        .once('email')
+        .then(snapshot => {
+            console.log('User email: ', snapshot.val());
+          });
+   
+  .then(snapshot => {
+            console.log('User email: ', snapshot.val());
+          });
+    
     firebase.firestore()
         .collection('user')
         .doc(firebase.auth().currentUser.uid)
         .onSnapshot((res) => {
             if(res.exists){
-                return dispatch({
+                 return dispatch({
                     type: USER_STATE_CHANGE,
                     currentUser: res.data(),
                     loaded:true
                 })
             }
         })
+        */
 }
-//,fname,lname
+//,fname,lname, This is where data is written to the firebase database
 export const writeUserData = (email) => {
     console.log('write user data called: ' + email)
     /*
@@ -48,8 +67,9 @@ export const writeUserData = (email) => {
        // reject()
     })
     */
-
-    firebase.database().ref('UsersList/').push({
+    UserID = firebase.auth().currentUser.uid
+    firebase.database().ref('UsersList/' + UserID ).set({
+    //firebase.database().ref('Test/test').set({   
         email
     }).then((data)=>{
         //success callback
@@ -57,11 +77,8 @@ export const writeUserData = (email) => {
     }).catch((error)=>{
         //error callback
         console.log('error ' , error)
-    })
-    
-    
+    })   
 }
-
 export const login = (email,password) => dispatch => new Promise((resolve,reject) => {
     firebase.auth().signInWithEmailAndPassword(email,password)
     .then(() => {
@@ -72,6 +89,7 @@ export const login = (email,password) => dispatch => new Promise((resolve,reject
     })
 })
 export const register = (email,password) => dispatch => new Promise((resolve,reject) => {
+  
     firebase.auth().createUserWithEmailAndPassword(email,password)
     .then(() => {
         resolve()
@@ -80,3 +98,15 @@ export const register = (email,password) => dispatch => new Promise((resolve,rej
         reject()
     })
 })
+
+export const logout = () => 
+{
+    firebase.auth().signOut()
+    .then(() => 
+    {
+        console.log("Sign-out successful")
+    })
+    .catch((error) => {
+        console.log("There was an error during the sign-out process")
+    });
+}

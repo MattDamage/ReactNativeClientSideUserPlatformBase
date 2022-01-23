@@ -26,11 +26,13 @@ export default function Route() {
         )
     }
 */
+
+// {currentUserObj.currentUser == null ?
     console.log(currentUserObj)
     return (
         <NavigationContainer>
             <Stack.Navigator>
-                {currentUserObj.currentUser == null ?
+                {currentUserObj.loaded == false ?
                 <Stack.Screen name = "auth" component={AuthScreen} options={{headerShown: false}}/>         
                 : 
                 <Stack.Screen name = "home" component={HomeScreen} options={{headerShown: false}}/>        
